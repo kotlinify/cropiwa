@@ -7,6 +7,7 @@ import android.graphics.Matrix;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.FloatRange;
+import android.support.v7.widget.AppCompatImageView;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.widget.ImageView;
@@ -23,7 +24,7 @@ import com.steelkiwi.cropiwa.util.TensionInterpolator;
  * 03.02.2017.
  */
 @SuppressLint("ViewConstructor")
-class CropIwaImageView extends ImageView implements OnNewBoundsListener, ConfigChangeListener {
+class CropIwaImageView extends AppCompatImageView implements OnNewBoundsListener, ConfigChangeListener {
 
     private Matrix imageMatrix;
     private MatrixUtils matrixUtils;

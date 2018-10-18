@@ -47,6 +47,9 @@ class CropImageTask extends AsyncTask<Void, Void, Throwable> {
             }
 
             Bitmap cropped = cropArea.applyCropTo(bitmap);
+            if (cropped == null) {
+                return new Exception("Coordinates must not negative");
+            }
 
             cropped = mask.applyMaskTo(cropped);
 
