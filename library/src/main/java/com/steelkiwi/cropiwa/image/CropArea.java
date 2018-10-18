@@ -35,12 +35,11 @@ public class CropArea {
         Integer x = findRealCoordinate(bitmap.getWidth(), cropRect.left, imageRect.width());
         Integer y = findRealCoordinate(bitmap.getHeight(), cropRect.top, imageRect.height());
         if (x < 0 || y < 0 || bitmap.getWidth() > imageRect.width() ||bitmap.getHeight() > imageRect.height()) {
-//            throw new NullPointerException("Failed to load bitmap");
             return null;
         }else{
-            Bitmap immutableCropped = Bitmap.createBitmap(bitmap,
-                    x,
-                    y,
+            Bitmap immutableCropped = Bitmap.createBitmap(
+                    bitmap,
+                    x, y,
                     findRealCoordinate(bitmap.getWidth(), cropRect.width(), imageRect.width()),
                     findRealCoordinate(bitmap.getHeight(), cropRect.height(), imageRect.height()));
             return immutableCropped.copy(immutableCropped.getConfig(), true);
