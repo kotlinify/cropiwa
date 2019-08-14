@@ -47,6 +47,6 @@ public class LoadBitmapCommand {
             return;
         }
         executed = true;
-        CropIwaBitmapManager.get().load(context, uri, width, height, loadListener);
+        CropIwaBitmapManager.Companion.get().load(context, uri, width, height, loadListener);
     }
 }
