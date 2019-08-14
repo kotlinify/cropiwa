@@ -1,22 +1,20 @@
 package com.steelkiwi.cropiwa;
 
-import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Matrix;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.FloatRange;
-import android.support.v7.widget.AppCompatImageView;
+import android.os.Handler;
+import androidx.annotation.FloatRange;
+import androidx.appcompat.widget.AppCompatImageView;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
-import android.widget.ImageView;
 
 import com.steelkiwi.cropiwa.config.ConfigChangeListener;
 import com.steelkiwi.cropiwa.config.CropIwaImageViewConfig;
 import com.steelkiwi.cropiwa.util.CropIwaUtils;
 import com.steelkiwi.cropiwa.util.MatrixUtils;
-import com.steelkiwi.cropiwa.util.MatrixAnimator;
 import com.steelkiwi.cropiwa.util.TensionInterpolator;
 
 /**
@@ -93,7 +91,7 @@ class CropIwaImageView extends AppCompatImageView implements OnNewBoundsListener
         } else {
             scale = ((float) getWidth()) / getImageWidth();
         }
-        scaleImage(scale);
+        scaleImage(scale + 10);
     }
 
     private void resizeImageToBeInsideTheView() {
@@ -103,7 +101,7 @@ class CropIwaImageView extends AppCompatImageView implements OnNewBoundsListener
         } else {
             scale = ((float) getWidth()) / getImageWidth();
         }
-        scaleImage(scale);
+        scaleImage(scale + 10);
     }
 
     private void moveImageToTheCenter() {
@@ -152,35 +150,52 @@ class CropIwaImageView extends AppCompatImageView implements OnNewBoundsListener
 
     @Override
     public void onNewBounds(RectF bounds) {
-        updateImageBounds();
+//        updateImageBounds();
         allowedBounds.set(bounds);
         if (hasImageSize()) {
-            post(new Runnable() {
+            final Handler handler = new Handler();
+            Thread thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    animateToAllowedBounds();
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            animateToAllowedBounds();
+                        }
+                    });
                 }
             });
-            updateImageBounds();
-            invalidate();
+            thread.setPriority(Thread.MAX_PRIORITY);
+            thread.start();
+//            post(new Runnable() {
+//                @Override
+//                public void run() {
+//                    animateToAllowedBounds();
+//                }
+//            });
+
         }
     }
 
     private void animateToAllowedBounds() {
-        updateImageBounds();
+
         Matrix endMatrix = MatrixUtils.findTransformToAllowedBounds(
                 realImageBounds, imageMatrix,
                 allowedBounds);
-        MatrixAnimator animator = new MatrixAnimator();
-        animator.animate(imageMatrix, endMatrix, new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                imageMatrix.set((Matrix) animation.getAnimatedValue());
-                setImageMatrix(imageMatrix);
-                updateImageBounds();
-                invalidate();
-            }
-        });
+//        MatrixAnimator animator = new MatrixAnimator();
+//        animator.animate(imageMatrix, endMatrix, new ValueAnimator.AnimatorUpdateListener() {
+//            @Override
+//            public void onAnimationUpdate(ValueAnimator animation) {
+//                imageMatrix.set((Matrix) animation.getAnimatedValue());
+//                setImageMatrix(imageMatrix);
+//                updateImageBounds();
+//                invalidate();
+//            }
+//        });
+        imageMatrix.set(endMatrix);
+        setImageMatrix(imageMatrix);
+        updateImageBounds();
+        invalidate();
     }
 
     private void setScalePercent(@FloatRange(from = 0.01f, to = 1f) float percent) {

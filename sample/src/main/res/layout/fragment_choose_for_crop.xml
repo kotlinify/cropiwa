@@ -9,7 +9,7 @@
         style="@style/BottomSheetDialogButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:selectableItemBackground"
+        android:background="?attr/selectableItemBackground"
         android:drawableStart="@drawable/ic_tag_faces_black_24dp"
         android:text="Random image" />
 
@@ -18,7 +18,7 @@
         style="@style/BottomSheetDialogButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:selectableItemBackground"
+        android:background="?attr/selectableItemBackground"
         android:drawableStart="@drawable/ic_collections_black_24dp"
         android:text="Choose from gallery" />
 

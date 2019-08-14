@@ -2,8 +2,8 @@ package com.steelkiwi.cropiwa.config;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.annotation.FloatRange;
-import android.support.annotation.NonNull;
+import androidx.annotation.FloatRange;
+import androidx.annotation.NonNull;
 import android.util.AttributeSet;
 
 import com.steelkiwi.cropiwa.AspectRatio;

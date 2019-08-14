@@ -1,18 +1,19 @@
 package com.steelkiwi.cropiwa.sample.fragment;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.BottomSheetDialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.steelkiwi.cropiwa.sample.CropActivity;
 import com.steelkiwi.cropiwa.sample.R;
 import com.steelkiwi.cropiwa.sample.util.Permissions;
@@ -56,7 +57,7 @@ public class ChooseImageForCropFragment extends BottomSheetDialogFragment implem
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_CHOOSE_PHOTO && resultCode == Activity.RESULT_OK) {
+        if (requestCode == REQUEST_CHOOSE_PHOTO && resultCode == AppCompatActivity.RESULT_OK) {
             startCropActivity(data.getData());
         } else {
             super.onActivityResult(requestCode, resultCode, data);
@@ -75,7 +76,7 @@ public class ChooseImageForCropFragment extends BottomSheetDialogFragment implem
     }
 
     private void startGalleryApp() {
-        if (Permissions.isGranted(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+        if (Permissions.isGranted((AppCompatActivity) getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_GET_CONTENT);
             intent.addCategory(Intent.CATEGORY_OPENABLE);

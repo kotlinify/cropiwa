@@ -34,15 +34,15 @@ public class CropArea {
     public Bitmap applyCropTo(Bitmap bitmap) {
         Integer x = findRealCoordinate(bitmap.getWidth(), cropRect.left, imageRect.width());
         Integer y = findRealCoordinate(bitmap.getHeight(), cropRect.top, imageRect.height());
-        if (x < 0 || y < 0 || bitmap.getWidth() > imageRect.width() ||bitmap.getHeight() > imageRect.height()) {
+        if (x < 0 || y < 0 || imageRect.bottom - cropRect.bottom < 0 || imageRect.left - cropRect.left > 0 || imageRect.right - cropRect.right < 0 || imageRect.top - cropRect.top > 0) {
             return null;
-        }else{
-            Bitmap immutableCropped = Bitmap.createBitmap(
+        } else {
+            Bitmap immutableCropped = Bitmap.createBitmap(  //TODO: crash Caused by java.lang.IllegalArgumentException y + height must be <= bitmap.height()
                     bitmap,
                     x, y,
                     findRealCoordinate(bitmap.getWidth(), cropRect.width(), imageRect.width()),
                     findRealCoordinate(bitmap.getHeight(), cropRect.height(), imageRect.height()));
-            return immutableCropped.copy(immutableCropped.getConfig(), true);
+            return immutableCropped.copy(immutableCropped.getConfig(), true); //TODO: crash outofmemory
 
         }
     }

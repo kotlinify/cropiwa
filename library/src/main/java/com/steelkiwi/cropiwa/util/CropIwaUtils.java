@@ -2,8 +2,8 @@ package com.steelkiwi.cropiwa.util;
 
 import android.content.res.Resources;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.util.DisplayMetrics;
 
 import java.io.Closeable;

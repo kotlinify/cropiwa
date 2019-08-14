@@ -21,6 +21,8 @@ import com.steelkiwi.cropiwa.util.LoadBitmapCommand;
 import com.steelkiwi.cropiwa.shape.CropIwaShapeMask;
 import com.steelkiwi.cropiwa.util.CropIwaLog;
 
+import androidx.core.content.res.ResourcesCompat;
+
 /**
  * Created by yarolegovich on 02.02.2017.
  */
@@ -81,7 +83,7 @@ public class CropIwaView extends FrameLayout {
             throw new IllegalStateException("imageConfig must be initialized before calling this method");
         }
         imageView = new CropIwaImageView(getContext(), imageConfig);
-        imageView.setBackgroundColor(Color.BLACK);
+        imageView.setBackgroundColor(Color.WHITE);
         gestureDetector = imageView.getImageTransformGestureDetector();
         addView(imageView);
     }
