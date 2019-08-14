@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.steelkiwi.cropiwa.sample.view.SquareLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.kotlinify.cropiwa.sample.view.SquareLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackground"
@@ -14,4 +14,4 @@
         android:text="@string/btn_new_crop"
         android:textColor="?android:textColorSecondary" />
 
-</com.steelkiwi.cropiwa.sample.view.SquareLayout>
+</com.kotlinify.cropiwa.sample.view.SquareLayout>

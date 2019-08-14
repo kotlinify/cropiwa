@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.steelkiwi.cropiwa.sample.view.AspectRatioPreviewView
+<com.kotlinify.cropiwa.sample.view.AspectRatioPreviewView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/aspect_ratio_preview"
     android:layout_marginLeft="8dp"

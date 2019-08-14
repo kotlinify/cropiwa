@@ -34,7 +34,7 @@ screen and wait for the result in a form of broadcast.
 ### Usage:
  Add CropIwa to your xml:
 ```xml
-<com.steelkiwi.cropiwa.CropIwaView
+<com.kotlinify.cropiwa.CropIwaView
   android:id="@+id/crop_view"
   android:layout_width="match_parent"
   android:layout_height="match_parent" />
