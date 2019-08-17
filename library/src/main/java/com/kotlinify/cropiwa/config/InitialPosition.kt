@@ -1,9 +1,9 @@
-package com.kotlinify.cropiwa.config;
+package com.kotlinify.cropiwa.config
 
 /**
  * @author Yaroslav Polyakov 25.02.2017.
  */
-public enum InitialPosition {
+enum class InitialPosition {
     CENTER_INSIDE,
     CENTER_CROP
 }
