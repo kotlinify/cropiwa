@@ -7,7 +7,7 @@ import androidx.annotation.IntRange
  * on 06.02.2017.
  */
 
-class AspectRatio(@param:IntRange(from = -1) val width: Int, @param:IntRange(from = -1) val height: Int) {
+open class AspectRatio(@param:IntRange(from = -1) var width: Int, @param:IntRange(from = -1) var height: Int) {
 
     val isSquare: Boolean
         get() = width == height
@@ -16,7 +16,6 @@ class AspectRatio(@param:IntRange(from = -1) val width: Int, @param:IntRange(fro
         get() = width.toFloat() / height
 
     companion object {
-
-        val IMG_SRC = AspectRatio(-1, -1)
+        var IMG_SRC = AspectRatio(-1, -1)
     }
 }

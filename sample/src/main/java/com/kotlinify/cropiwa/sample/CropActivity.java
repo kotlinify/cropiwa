@@ -12,7 +12,7 @@ import android.view.MenuItem;
 
 import com.kotlinify.cropiwa.CropIwaView;
 import com.kotlinify.cropiwa.sample.config.CropViewConfigurator;
-import com.yarolegovich.mp.MaterialPreferenceScreen;
+//import com.yarolegovich.mp.MaterialPreferenceScreen;
 
 public class CropActivity extends AppCompatActivity {
 
@@ -42,9 +42,9 @@ public class CropActivity extends AppCompatActivity {
         cropView = (CropIwaView) findViewById(R.id.crop_view);
         cropView.setImageUri(imageUri);
 
-        MaterialPreferenceScreen cropPrefScreen = (MaterialPreferenceScreen) findViewById(R.id.crop_preference_screen);
-        configurator = new CropViewConfigurator(cropView, cropPrefScreen);
-        cropPrefScreen.setStorageModule(configurator);
+//        MaterialPreferenceScreen cropPrefScreen = (MaterialPreferenceScreen) findViewById(R.id.crop_preference_screen);
+//        configurator = new CropViewConfigurator(cropView, cropPrefScreen);
+//        cropPrefScreen.setStorageModule(configurator);
     }
 
     @Override
