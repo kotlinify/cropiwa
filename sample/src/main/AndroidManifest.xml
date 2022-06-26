@@ -16,7 +16,8 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".CropGalleryActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,10 +29,12 @@
             android:name=".ViewImageActivity"
             android:screenOrientation="portrait"
             android:parentActivityName=".CropGalleryActivity"
-            android:theme="@style/ViewImageActivityTheme" />
+            android:theme="@style/ViewImageActivityTheme"
+            android:exported="true"/>
 
         <activity
             android:name=".CropActivity"
+            android:exported="true"
             android:screenOrientation="portrait"
             android:parentActivityName=".CropGalleryActivity" />
 

@@ -16,27 +16,29 @@ Both kotlin and java versions. Read the wiki for details;
 
 ## Gradle
 
+Gradle is upgraded 7.3.3 and used kotlin 1.7.0
+
 Add this into your dependencies block.
 
 ```groovy
 	allprojects {
 		repositories {
-			...
 			maven { url 'https://jitpack.io' }
 		}
 	}
 ```
 
 ```groovy
-implementation 'com.github.kotlinify:cropiwa:java-2.0.0'
+implementation 'com.github.kotlinify:cropiwa:3.0.0'
 ```
 
 ## Sample
 
-Please see the [sample app](https://github.com/kotlinify/cropiwa/tree/java-master/sample/src/main/java/com/kotlinify/cropiwa/sample) for library usage examples.
+Please see the old sample [sample app](https://github.com/kotlinify/cropiwa/tree/java-master/sample/src/main/java/com/kotlinify/cropiwa/sample) for library usage examples.
 
 ## Wiki
 
+Cropiwa converted to kotlin. Also async task converted to thread process, and soon I will add kotlin way to add project.
 The library has a modular architecture, which makes it highly configurable. For info on how to configure `CropIwaView` refer to the sections
 below.
 
@@ -57,11 +59,11 @@ screen and wait for the result in a form of broadcast.
 ### Image saving
 
 ```java
-cropView.crop(new CropIwaSaveConfig.Builder(destinationUri)
-  .setCompressFormat(Bitmap.CompressFormat.PNG)
-  .setSize(outWidth, outHeight) //Optional. If not specified, SRC dimensions will be used
-  .setQuality(100) //Hint for lossy compression formats
-  .build());
+    cropView.crop(new CropIwaSaveConfig.Builder(destinationUri)
+      .setCompressFormat(Bitmap.CompressFormat.PNG)
+      .setSize(outWidth, outHeight) //Optional. If not specified, SRC dimensions will be used
+      .setQuality(100) //Hint for lossy compression formats
+      .build());
 ```
 
 ### Callbacks
@@ -69,24 +71,24 @@ cropView.crop(new CropIwaSaveConfig.Builder(destinationUri)
 Cropped region saved callback. When crop request completes, a broadcast is sent. You can either listen to it using the CropIwaView intance
 
 ```java
-cropView.setCropSaveCompleteListener(bitmapUri -> {
-  //Do something
-});
+    cropView.setCropSaveCompleteListener(bitmapUri -> {
+      //Do something
+    });
 
-cropView.setErrorListener(error -> {
-  //Do something
-});
+    cropView.setErrorListener(error -> {
+      //Do something
+    });
 ```
 
 or work directly with a broadcast receiver. The advantage is that it can be used from any part of the app, where you have an access to `Context`.
 
 ```java
-CropIwaResultReceiver resultReceiver = new CropIwaResultReceiver();
-resultReceiver.setListener(resultListener);
-resultReceiver.register(context);
-
-//Don't forget to unregister it when you are done
-resultReceiver.unregister(context);
+    CropIwaResultReceiver resultReceiver = new CropIwaResultReceiver();
+    resultReceiver.setListener(resultListener);
+    resultReceiver.register(context);
+    
+    //Don't forget to unregister it when you are done
+    resultReceiver.unregister(context);
 ```
 
 You can subscribe for changes in `CropIwaView`s configs. Listeners will be notified anytime `.apply()` is called.

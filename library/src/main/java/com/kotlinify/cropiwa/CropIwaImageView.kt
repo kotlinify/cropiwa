@@ -97,14 +97,15 @@ internal class CropIwaImageView(context: Context, config: CropIwaImageViewConfig
     private fun placeImageToInitialPosition() {
         updateImageBounds()
         moveImageToTheCenter()
-        if (config!!.scale == CropIwaImageViewConfig.SCALE_UNSPECIFIED.toFloat()) {
-            when (config!!.getImageInitialPosition()) {
+        if (config?.scale == CropIwaImageViewConfig.SCALE_UNSPECIFIED.toFloat()) {
+            when (config?.getImageInitialPosition()) {
                 InitialPosition.CENTER_CROP -> resizeImageToFillTheView()
                 InitialPosition.CENTER_INSIDE -> resizeImageToBeInsideTheView()
+                else -> {}
             }
-            config!!.setScale(currentScalePercent).apply()
+            config?.setScale(currentScalePercent)?.apply()
         } else {
-            setScalePercent(config!!.scale)
+            setScalePercent(config?.scale)
         }
         notifyImagePositioned()
     }
@@ -192,9 +193,9 @@ internal class CropIwaImageView(context: Context, config: CropIwaImageViewConfig
         invalidate()
     }
 
-    private fun setScalePercent(@FloatRange(from = 0.01, to = 1.0) percent: Float) {
+    private fun setScalePercent(@FloatRange(from = 0.01, to = 1.0) percent: Float?) {
         var percent = percent
-        percent = Math.min(Math.max(0.01f, percent), 1f)
+        percent = Math.min(Math.max(0.01f, percent?:1.0f), 1f)
         val desiredScale = config!!.minScale + config!!.maxScale * percent
         val currentScale = matrixUtils!!.getScaleX(iMatrix)
         val factor = desiredScale / currentScale
